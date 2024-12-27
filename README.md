@@ -62,19 +62,14 @@ Se agrega collecion postman el la carputa resources (src/main/resources/Franquic
 
 Ejemplo:
 
-*   **`POST /franquicias`**: Crea una nueva franquicia.
+*   **`POST /franquicia`**: Crea una nueva franquicia.
+*   **`PATCH /franquicia/{idFranquicia}/nombre`**: Actualiza el nombre de una franquicia.
+*   **`POST /sucursal`**: Crea una nueva sucursal.
+*   **`PATCH /sucursal/{idSucursal}/nombre`**: Actualiza el nombre de una sucursal..
+*   **`POST /producto`**: Crea un nuevo producto.
+*   **`DELETE /producto/{idProducto}`**: Elimina un producto por id.
+*   **`PATCH /producto/{idProducto}/stock`**: Modifica el stock.
+*   **`GET /producto/{idFranquicia}/productos-con-mas-stock`**: Retorna los productos con mas stock a partir de idFranquicia.
+*   **`PATCH /producto{idProducto}/nombre`**: Actualiza el nombre de un producto.
+  
 
-    ```json
-    {
-      "nombre": "Nombre de la franquicia"
-    }
-    ```
-
-    Respuesta (201 Created):
-
-    ```json
-    {
-      "id": 1,
-      "nombre": "Nombre de la franquicia"
-    }
-    ```
