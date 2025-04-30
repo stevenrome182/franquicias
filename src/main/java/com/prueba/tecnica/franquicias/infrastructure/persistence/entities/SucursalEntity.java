@@ -12,7 +12,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "sucursales")
 public class SucursalEntity {
@@ -30,38 +34,5 @@ public class SucursalEntity {
 
 	@OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
 	private List<ProductoEntity> productos;
-
-	// Getters y setters
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public FranquiciaEntity getFranquicia() {
-		return franquicia;
-	}
-
-	public void setFranquicia(FranquiciaEntity franquicia) {
-		this.franquicia = franquicia;
-	}
-
-	public List<ProductoEntity> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<ProductoEntity> productos) {
-		this.productos = productos;
-	}
 	
 }

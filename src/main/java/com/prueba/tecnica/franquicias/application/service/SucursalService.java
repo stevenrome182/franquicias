@@ -9,18 +9,14 @@ import com.prueba.tecnica.franquicias.domain.ports.in.CrearSucursalInputPort;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreSucursalDTO;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class SucursalService {
 
 	private final CrearSucursalInputPort crearSucursalInputPort;
 	private final ActualizarNombreSucursalInputPort actualizarNombreSucursalInputPort;
-
-	public SucursalService(CrearSucursalInputPort crearSucursalInputPort,
-			ActualizarNombreSucursalInputPort actualizarNombreSucursalInputPort) {
-		this.crearSucursalInputPort = crearSucursalInputPort;
-		this.actualizarNombreSucursalInputPort = actualizarNombreSucursalInputPort;
-	}
 
 	@Transactional
 	public Sucursal crearSucursal(String nombre, Long feanquiciaId) {

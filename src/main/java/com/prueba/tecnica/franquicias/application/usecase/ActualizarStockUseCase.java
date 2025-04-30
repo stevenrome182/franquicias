@@ -7,14 +7,13 @@ import com.prueba.tecnica.franquicias.domain.model.Producto;
 import com.prueba.tecnica.franquicias.domain.ports.in.ActualizarStockInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.ProductoRepositoryPort;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class ActualizarStockUseCase implements ActualizarStockInputPort {
 
 	private final ProductoRepositoryPort productoRepository;
-
-	public ActualizarStockUseCase(ProductoRepositoryPort productoRepository) {
-		this.productoRepository = productoRepository;
-	}
 
 	@Override
 	public void actualizarStock(Long id, int cantidad) {

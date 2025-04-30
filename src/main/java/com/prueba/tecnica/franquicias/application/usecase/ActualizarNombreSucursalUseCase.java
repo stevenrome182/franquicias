@@ -7,14 +7,13 @@ import com.prueba.tecnica.franquicias.domain.model.Sucursal;
 import com.prueba.tecnica.franquicias.domain.ports.in.ActualizarNombreSucursalInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.SucursalRepositoryPort;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class ActualizarNombreSucursalUseCase implements ActualizarNombreSucursalInputPort {
 
 	private final SucursalRepositoryPort sucursalRepositoryPort;
-
-	public ActualizarNombreSucursalUseCase(SucursalRepositoryPort sucursalRepositoryPort) {
-		this.sucursalRepositoryPort = sucursalRepositoryPort;
-	}
 
 	@Override
 	public void actualizarNombre(Long id, String nombre) {

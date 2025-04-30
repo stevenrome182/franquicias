@@ -19,15 +19,14 @@ import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreProductoDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.ProductoConMasStockDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.ProductoDTO;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/producto")
+@RequiredArgsConstructor
 public class ProductoController {
 
 	private final ProductoService productoService;
-
-	public ProductoController(ProductoService productoService) {
-		this.productoService = productoService;
-	}
 
 	@PostMapping
 	public ResponseEntity<Void> crearProducto(@RequestBody ProductoDTO productoDTO) {
@@ -47,17 +46,23 @@ public class ProductoController {
 		return ResponseEntity.noContent().build();
 	}
 
+	@PatchMapping("/{id}/nombre")
+	public ResponseEntity<Void> modificarNombre(@PathVariable Long id,
+			@RequestBody NombreProductoDTO nombreProductoDTO) {
+		productoService.actualizarNombre(id, nombreProductoDTO);
+		return ResponseEntity.noContent().build();
+	}
+
 	@GetMapping("/{franquiciaId}/productos-con-mas-stock")
 	public ResponseEntity<List<ProductoConMasStockDTO>> obtenerProductosConMasStock(@PathVariable Long franquiciaId) {
 		List<ProductoConMasStockDTO> resultados = productoService.productosMasStock(franquiciaId);
 		return ResponseEntity.ok(resultados);
 	}
 
-	@PatchMapping("/{id}/nombre")
-	public ResponseEntity<Void> modificarNombre(@PathVariable Long id,
-			@RequestBody NombreProductoDTO nombreProductoDTO) {
-		productoService.actualizarNombre(id, nombreProductoDTO);
-		return ResponseEntity.noContent().build();
+	@GetMapping
+	public ResponseEntity<List<ProductoDTO>> obtenerProductos() {
+		List<ProductoDTO> productos = productoService.obtenerProductos();
+		return ResponseEntity.ok(productos);
 	}
 
 }

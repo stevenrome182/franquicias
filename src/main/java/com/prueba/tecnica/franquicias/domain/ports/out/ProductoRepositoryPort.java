@@ -1,5 +1,6 @@
 package com.prueba.tecnica.franquicias.domain.ports.out;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.prueba.tecnica.franquicias.domain.model.Producto;
@@ -15,5 +16,7 @@ public interface ProductoRepositoryPort {
 	Optional<Producto> buscarPorId(Long id);
 
 	Producto productoMasStock(Long sucursalId);
+
+	List<Producto> obtenerProductos();
 
 }

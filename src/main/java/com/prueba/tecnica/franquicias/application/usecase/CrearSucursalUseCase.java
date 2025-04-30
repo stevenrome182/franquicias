@@ -9,17 +9,14 @@ import com.prueba.tecnica.franquicias.domain.ports.in.CrearSucursalInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.FranquiciaRepositoryPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.SucursalRepositoryPort;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class CrearSucursalUseCase implements CrearSucursalInputPort {
 
 	private final SucursalRepositoryPort sucursalRepositoryPort;
 	private final FranquiciaRepositoryPort franquiciaRepository;
-
-	public CrearSucursalUseCase(SucursalRepositoryPort sucursalRepositoryPort,
-			FranquiciaRepositoryPort franquiciaRepository) {
-		this.sucursalRepositoryPort = sucursalRepositoryPort;
-		this.franquiciaRepository = franquiciaRepository;
-	}
 
 	@Override
 	public Sucursal guardar(Sucursal sucursal) {

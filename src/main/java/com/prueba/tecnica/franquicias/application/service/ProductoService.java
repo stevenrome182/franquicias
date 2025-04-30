@@ -10,13 +10,17 @@ import com.prueba.tecnica.franquicias.domain.ports.in.ActualizarNombreProductoIn
 import com.prueba.tecnica.franquicias.domain.ports.in.ActualizarStockInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.in.CrearProductoInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.in.EliminarProductoInputPort;
+import com.prueba.tecnica.franquicias.domain.ports.in.ObtenerProductosInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.in.ProductosMasStockInputPort;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreProductoDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.ProductoConMasStockDTO;
+import com.prueba.tecnica.franquicias.infrastructure.rest.dto.ProductoDTO;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProductoService {
 
 	private final CrearProductoInputPort crearProductoInputPort;
@@ -24,17 +28,7 @@ public class ProductoService {
 	private final ActualizarStockInputPort actualizarStockInputPort;
 	private final ProductosMasStockInputPort productosMasStockInputPort;
 	private final ActualizarNombreProductoInputPort actualizarNombreProductoInputPort;
-
-	public ProductoService(CrearProductoInputPort crearProductoInputPort,
-			EliminarProductoInputPort eliminarProductoInputPort, ActualizarStockInputPort bucarProductoPorIdInputPort,
-			ProductosMasStockInputPort productosMasStockInputPort,
-			ActualizarNombreProductoInputPort actualizarNombreProductoInputPort) {
-		this.crearProductoInputPort = crearProductoInputPort;
-		this.eliminarProductoInputPort = eliminarProductoInputPort;
-		this.actualizarStockInputPort = bucarProductoPorIdInputPort;
-		this.productosMasStockInputPort = productosMasStockInputPort;
-		this.actualizarNombreProductoInputPort = actualizarNombreProductoInputPort;
-	}
+	private final ObtenerProductosInputPort obtenerProductosInputPort;
 
 	@Transactional
 	public Producto crearProducto(String nombre, int stock, Long sucursalId) {
@@ -61,6 +55,10 @@ public class ProductoService {
 	@Transactional
 	public void actualizarNombre(long id, NombreProductoDTO nombreProductoDTO) {
 		actualizarNombreProductoInputPort.actualizarNombre(id, nombreProductoDTO.getNombre());
+	}
+
+	public List<ProductoDTO> obtenerProductos() {
+		return obtenerProductosInputPort.obtenerProductos();
 	}
 
 }

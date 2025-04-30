@@ -13,22 +13,23 @@ import com.prueba.tecnica.franquicias.application.service.FranquiciaService;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.FranquiciaDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreFranquiciaDTO;
 
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/franquicia")
+@RequiredArgsConstructor
 public class FranquiciaController {
 
 	private final FranquiciaService franquiciaService;
 
-	public FranquiciaController(FranquiciaService franquiciaService) {
-		this.franquiciaService = franquiciaService;
-	}
-
+	@Operation(summary = "Crea una franquicia", description = "Crea una franquicia a partir del nombre.")
 	@PostMapping
 	public ResponseEntity<Void> crearFranquicia(@RequestBody FranquiciaDTO franquiciaDTO) {
 		franquiciaService.crearFranquicia(franquiciaDTO.getNombre());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@PatchMapping("/{id}/nombre")
 	public ResponseEntity<Void> modificarNombre(@PathVariable Long id,
 			@RequestBody NombreFranquiciaDTO nombreFranquiciaDTO) {

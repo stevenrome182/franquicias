@@ -13,15 +13,14 @@ import com.prueba.tecnica.franquicias.application.service.SucursalService;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreSucursalDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.SucursalDTO;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/sucursal")
+@RequiredArgsConstructor
 public class SucursalController {
 
 	private final SucursalService sucursalService;
-
-	public SucursalController(SucursalService sucursalService) {
-		this.sucursalService = sucursalService;
-	}
 
 	@PostMapping
 	public ResponseEntity<Void> crearSucursal(@RequestBody SucursalDTO sucursalDTO) {

@@ -8,18 +8,14 @@ import com.prueba.tecnica.franquicias.domain.ports.in.CrearFranquiciaInputPort;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreFranquiciaDTO;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class FranquiciaService {
 
 	private final CrearFranquiciaInputPort crearFranquiciaInputPort;
 	private final ActualizarNombreFranquiciaInputPort actualizarNombreFranquiciaInputPort;
-
-	public FranquiciaService(CrearFranquiciaInputPort crearFranquiciaInputPort,
-			ActualizarNombreFranquiciaInputPort actualizarNombreFranquiciaInputPort) {
-		this.crearFranquiciaInputPort = crearFranquiciaInputPort;
-		this.actualizarNombreFranquiciaInputPort = actualizarNombreFranquiciaInputPort;
-	}
 
 	@Transactional
 	public Franquicia crearFranquicia(String nombre) {

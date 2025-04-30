@@ -1,5 +1,6 @@
 package com.prueba.tecnica.franquicias.infrastructure.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -61,6 +62,11 @@ public class JpaProductoRepositoryAdapter implements ProductoRepositoryPort {
 			return ProductoMapper.toDomain(productoEntity);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Producto> obtenerProductos() {
+		return jpaProductoRepository.findAll().stream().map(ProductoMapper::toDomain).toList();
 	}
 
 }

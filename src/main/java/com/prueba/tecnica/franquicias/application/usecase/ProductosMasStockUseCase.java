@@ -12,17 +12,14 @@ import com.prueba.tecnica.franquicias.domain.ports.out.ProductoRepositoryPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.SucursalRepositoryPort;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.ProductoConMasStockDTO;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class ProductosMasStockUseCase implements ProductosMasStockInputPort {
 
 	private final ProductoRepositoryPort productoRepository;
 	private final SucursalRepositoryPort sucursalRepositoryPort;
-
-	public ProductosMasStockUseCase(ProductoRepositoryPort productoRepository,
-			SucursalRepositoryPort sucursalRepositoryPort) {
-		this.productoRepository = productoRepository;
-		this.sucursalRepositoryPort = sucursalRepositoryPort;
-	}
 
 	@Override
 	public List<ProductoConMasStockDTO> productosMasStock(Long franquiciaId) {

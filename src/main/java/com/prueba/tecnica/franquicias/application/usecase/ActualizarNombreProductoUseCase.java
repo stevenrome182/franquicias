@@ -7,14 +7,13 @@ import com.prueba.tecnica.franquicias.domain.model.Producto;
 import com.prueba.tecnica.franquicias.domain.ports.in.ActualizarNombreProductoInputPort;
 import com.prueba.tecnica.franquicias.domain.ports.out.ProductoRepositoryPort;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class ActualizarNombreProductoUseCase implements ActualizarNombreProductoInputPort {
 
 	private final ProductoRepositoryPort productoRepositoryPort;
-
-	public ActualizarNombreProductoUseCase(ProductoRepositoryPort productoRepositoryPort) {
-		this.productoRepositoryPort = productoRepositoryPort;
-	}
 
 	@Override
 	public void actualizarNombre(Long id, String nombre) {
