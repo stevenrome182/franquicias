@@ -35,6 +35,8 @@ La API permite la gestión de una jerarquía de entidades:
 * Docker
 * Docker Compose
 * Swagger
+* JUnit
+* Mockito
 
 ## Configuración
 
