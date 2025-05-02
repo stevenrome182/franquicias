@@ -5,11 +5,11 @@ import com.prueba.tecnica.franquicias.domain.model.Sucursal;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.FranquiciaEntity;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.SucursalEntity;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SucursalMapper {
-
-	private SucursalMapper() {
-
-	}
 
 	public static Sucursal toDomain(SucursalEntity sucursalEntity) {
 		if (sucursalEntity == null) {
@@ -37,7 +37,6 @@ public class SucursalMapper {
 			franquiciaEntity.setId(domain.getFranquicia().getId());
 			entity.setFranquicia(franquiciaEntity);
 		}
-
 		return entity;
 	}
 

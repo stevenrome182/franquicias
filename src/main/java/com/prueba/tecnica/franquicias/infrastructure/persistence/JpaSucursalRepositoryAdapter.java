@@ -11,14 +11,13 @@ import com.prueba.tecnica.franquicias.domain.model.Sucursal;
 import com.prueba.tecnica.franquicias.domain.ports.out.SucursalRepositoryPort;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.SucursalEntity;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class JpaSucursalRepositoryAdapter implements SucursalRepositoryPort {
 
 	private final JpaSucursalRepository jpaSucursalRepository;
-
-	public JpaSucursalRepositoryAdapter(JpaSucursalRepository jpaSucursalRepository) {
-		this.jpaSucursalRepository = jpaSucursalRepository;
-	}
 
 	@Override
 	public Sucursal guardar(Sucursal sucursal) {

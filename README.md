@@ -104,3 +104,14 @@ Ejemplo:
 * **`PATCH /producto/{idProducto}/stock`**: Modifica el stock.
 * **`GET /producto/{idFranquicia}/productos-con-mas-stock`**: Retorna los productos con mas stock a partir de idFranquicia.
 * **`PATCH /producto/{idProducto}/nombre`**: Actualiza el nombre de un producto.
+
+## Diseño de Despliegue en AWS:
+
+* **Amazon Elastic Container Registry (ECR):** El registro de contenedores Docker administrado para almacenar y gestionar las imágenes Docker de la aplicación.
+* **Amazon Elastic Container Service (ECS):** La plataforma de orquestación de contenedores administrada que facilita la ejecución, el escalado y la administración de aplicaciones Dockerizadas. Puede operar con nuestro esquema Fargate (serverless) o nuestras instancias EC2.
+* **ECS Task Definition:** La definición de tarea que describe los contenedores a ejecutar en ECS, incluyendo la imagen Docker, los puertos, los recursos y las variables de entorno.
+* **ECS Service:** El servicio que mantiene un número específico de instancias de la Task Definition activas y gestiona su escalabilidad y disponibilidad.
+* **Application Load Balancer (ALB):** El balanceador de carga de capa 7 que distribuye el tráfico HTTP/HTTPS entrante a las instancias de los contenedores en ECS, sirviendo como nuestro punto de acceso a la aplicación.
+* **Amazon Virtual Private Cloud (VPC):** La red virtual aislada en AWS, que provee control sobre el entorno de red para nuestros recursos.
+* **Subnets:** Rangos de direcciones IP dentro de nuestra VPC donde se despliegan nuestros recursos de AWS. Es recomendable la distribución en múltiples Availability Zones para alta disponibilidad.
+* **Amazon RDS (Relational Database Service):** El servicio de base de datos relacional administrado que simplifica la configuración, operación y escalado de bases de datos en la nube (si la aplicación lo requiere).

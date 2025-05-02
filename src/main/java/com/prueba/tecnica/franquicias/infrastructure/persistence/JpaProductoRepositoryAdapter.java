@@ -11,14 +11,13 @@ import com.prueba.tecnica.franquicias.domain.model.Producto;
 import com.prueba.tecnica.franquicias.domain.ports.out.ProductoRepositoryPort;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.ProductoEntity;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class JpaProductoRepositoryAdapter implements ProductoRepositoryPort {
 
 	private final JpaProductoRepository jpaProductoRepository;
-
-	public JpaProductoRepositoryAdapter(JpaProductoRepository jpaProductoRepository) {
-		this.jpaProductoRepository = jpaProductoRepository;
-	}
 
 	@Override
 	public Producto guardar(Producto producto) {

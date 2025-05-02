@@ -9,14 +9,13 @@ import com.prueba.tecnica.franquicias.domain.model.Franquicia;
 import com.prueba.tecnica.franquicias.domain.ports.out.FranquiciaRepositoryPort;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.FranquiciaEntity;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class JpaFranquiciaRepositoryAdapter implements FranquiciaRepositoryPort {
 
 	private final JpaFranquiciaRepository jpaFranquiciaRepository;
-
-	public JpaFranquiciaRepositoryAdapter(JpaFranquiciaRepository jpaFranquiciaRepository) {
-		this.jpaFranquiciaRepository = jpaFranquiciaRepository;
-	}
 
 	@Override
 	public Franquicia guardar(Franquicia franquicia) {

@@ -3,10 +3,11 @@ package com.prueba.tecnica.franquicias.application.mapper;
 import com.prueba.tecnica.franquicias.domain.model.Franquicia;
 import com.prueba.tecnica.franquicias.infrastructure.persistence.entities.FranquiciaEntity;
 
-public class FranquiciaMapper {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-	private FranquiciaMapper() {
-	}
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class FranquiciaMapper {
 
 	public static Franquicia toDomain(FranquiciaEntity entity) {
 		if (entity == null) {
