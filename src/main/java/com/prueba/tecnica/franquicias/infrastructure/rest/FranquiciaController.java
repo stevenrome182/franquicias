@@ -14,6 +14,7 @@ import com.prueba.tecnica.franquicias.infrastructure.rest.dto.FranquiciaDTO;
 import com.prueba.tecnica.franquicias.infrastructure.rest.dto.NombreFranquiciaDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,12 +25,16 @@ public class FranquiciaController {
 	private final FranquiciaService franquiciaService;
 
 	@Operation(summary = "Crea una franquicia", description = "Crea una franquicia a partir del nombre.")
+	@ApiResponse(responseCode = "201", description = "Franquicia creada")
 	@PostMapping
 	public ResponseEntity<Void> crearFranquicia(@RequestBody FranquiciaDTO franquiciaDTO) {
 		franquiciaService.crearFranquicia(franquiciaDTO.getNombre());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Actualiza el nombre de la franquicia.", description = "Actualiza el nombre de la franquicia.")
+	@ApiResponse(responseCode = "204", description = "Franquicia actualizada")
+	@ApiResponse(responseCode = "404", description = "Franquicia no encontrada")
 	@PatchMapping("/{id}/nombre")
 	public ResponseEntity<Void> modificarNombre(@PathVariable Long id,
 			@RequestBody NombreFranquiciaDTO nombreFranquiciaDTO) {

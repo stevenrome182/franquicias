@@ -1,0 +1,42 @@
+services:
+  # Definimos el servicio de la base de datos
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: franquicias_db
+      POSTGRES_USER: my_user
+      POSTGRES_PASSWORD: prueba123*
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+     test: ["CMD-SHELL", "pg_isready -U my_user -d franquicias_db"]
+     interval: 5s
+     timeout: 5s
+     retries: 3
+    networks:
+    - backend
+
+  # El servicio para la aplicación Spring Boot
+  app:
+    build: .
+    container_name: spring-boot-app
+    depends_on:
+      - db
+    ports:
+      - "8083:8083"
+    networks:
+      - backend
+    env_file:
+     - .env
+
+# Volúmenes para persistir datos
+volumes:
+  postgres-data:
+
+# Redes para aislar la red de comunicación entre servicios
+networks:
+  backend:
+    driver: bridge
